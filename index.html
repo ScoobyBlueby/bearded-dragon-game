@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bearded Dragon Pet Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>🦎 Bearded Dragon Simulator</h1>
+            <div class="dragon-name-display">
+                <span id="dragon-name">Your Dragon</span>
+                <span id="dragon-age">Age: 0 days</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Terrarium Display -->
+            <section class="terrarium">
+                <div class="terrarium-background">
+                    <div class="heat-lamp" id="heat-lamp"></div>
+                    <div class="uvb-light" id="uvb-light"></div>
+                    <div class="substrate"></div>
+                    <div class="basking-rock"></div>
+                    <div class="hide-cave"></div>
+                    <div class="water-dish"></div>
+                    <div class="food-dish" id="food-dish"></div>
+                    <div class="dragon" id="dragon">
+                        <div class="dragon-body">
+                            <div class="dragon-head">
+                                <div class="nostril"></div>
+                                <div class="dragon-eye-ridge"></div>
+                                <div class="dragon-eye"></div>
+                                <div class="dragon-beard" id="dragon-beard"></div>
+                            </div>
+                            <div class="dragon-spikes"></div>
+                            <div class="dragon-legs front-left"></div>
+                            <div class="dragon-legs front-right"></div>
+                            <div class="dragon-legs back-left"></div>
+                            <div class="dragon-legs back-right"></div>
+                            <div class="dragon-tail"></div>
+                        </div>
+                    </div>
+                    <div class="thermometer">
+                        <div class="thermo-fill" id="thermo-fill"></div>
+                        <span id="temp-display">85°F</span>
+                    </div>
+                </div>
+                <div class="dragon-mood" id="dragon-mood">😊 Happy</div>
+            </section>
+
+            <!-- Stats Panel -->
+            <section class="stats-panel">
+                <h2>Dragon Stats</h2>
+                <div class="stat-bars">
+                    <div class="stat">
+                        <label>❤️ Health</label>
+                        <div class="bar-container">
+                            <div class="bar health-bar" id="health-bar"></div>
+                        </div>
+                        <span id="health-value">100%</span>
+                    </div>
+                    <div class="stat">
+                        <label>🍖 Hunger</label>
+                        <div class="bar-container">
+                            <div class="bar hunger-bar" id="hunger-bar"></div>
+                        </div>
+                        <span id="hunger-value">100%</span>
+                    </div>
+                    <div class="stat">
+                        <label>💧 Hydration</label>
+                        <div class="bar-container">
+                            <div class="bar hydration-bar" id="hydration-bar"></div>
+                        </div>
+                        <span id="hydration-value">100%</span>
+                    </div>
+                    <div class="stat">
+                        <label>😊 Happiness</label>
+                        <div class="bar-container">
+                            <div class="bar happiness-bar" id="happiness-bar"></div>
+                        </div>
+                        <span id="happiness-value">100%</span>
+                    </div>
+                </div>
+
+                <div class="growth-info">
+                    <h3>Growth Stage</h3>
+                    <div class="growth-stage" id="growth-stage">🥒 Baby</div>
+                    <div class="size-display">Size: <span id="size-display">4 inches</span></div>
+                </div>
+            </section>
+
+            <!-- Environment Controls -->
+            <section class="environment-panel">
+                <h2>🌡️ Environment</h2>
+                <div class="env-controls">
+                    <div class="control">
+                        <label>Basking Temp</label>
+                        <input type="range" id="basking-temp" min="70" max="120" value="100">
+                        <span id="basking-temp-value">100°F</span>
+                        <div class="optimal-range">Optimal: 95-110°F</div>
+                    </div>
+                    <div class="control">
+                        <label>Cool Side Temp</label>
+                        <input type="range" id="cool-temp" min="60" max="100" value="80">
+                        <span id="cool-temp-value">80°F</span>
+                        <div class="optimal-range">Optimal: 75-85°F</div>
+                    </div>
+                    <div class="control">
+                        <label>Humidity</label>
+                        <input type="range" id="humidity" min="10" max="80" value="35">
+                        <span id="humidity-value">35%</span>
+                        <div class="optimal-range">Optimal: 30-40%</div>
+                    </div>
+                    <div class="control toggle-control">
+                        <label>UVB Light</label>
+                        <button class="toggle-btn active" id="uvb-toggle">ON</button>
+                        <div class="optimal-range">10-12 hours daily</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feeding Panel -->
+            <section class="feeding-panel">
+                <h2>🍽️ Feeding</h2>
+                <div class="food-options">
+                    <div class="food-category">
+                        <h3>🦗 Insects (Protein)</h3>
+                        <div class="food-buttons">
+                            <button class="food-btn" data-food="crickets" data-type="insect">
+                                🦗 Crickets
+                                <span class="food-info">+15 hunger, +5 health</span>
+                            </button>
+                            <button class="food-btn" data-food="dubia" data-type="insect">
+                                🪳 Dubia Roaches
+                                <span class="food-info">+20 hunger, +8 health</span>
+                            </button>
+                            <button class="food-btn" data-food="mealworms" data-type="insect">
+                                🐛 Mealworms
+                                <span class="food-info">+10 hunger, +3 health</span>
+                            </button>
+                            <button class="food-btn special" data-food="hornworms" data-type="insect">
+                                🐛 Hornworms (Treat)
+                                <span class="food-info">+25 hunger, +10 happiness</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="food-category">
+                        <h3>🥬 Vegetables</h3>
+                        <div class="food-buttons">
+                            <button class="food-btn" data-food="collards" data-type="veggie">
+                                🥬 Collard Greens
+                                <span class="food-info">+10 hunger, +10 health</span>
+                            </button>
+                            <button class="food-btn" data-food="squash" data-type="veggie">
+                                🎃 Butternut Squash
+                                <span class="food-info">+12 hunger, +8 health</span>
+                            </button>
+                            <button class="food-btn" data-food="bell-pepper" data-type="veggie">
+                                🫑 Bell Pepper
+                                <span class="food-info">+8 hunger, +5 health</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="action-btn" id="give-water">💧 Give Water</button>
+            </section>
+
+            <!-- Actions Panel -->
+            <section class="actions-panel">
+                <h2>🎮 Actions</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="handle-dragon">🤲 Handle Dragon</button>
+                    <button class="action-btn" id="give-bath">🛁 Give Bath</button>
+                    <button class="action-btn" id="clean-tank">🧹 Clean Tank</button>
+                    <button class="action-btn" id="play-dragon">🎾 Play Time</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Messages Log -->
+        <aside class="message-log">
+            <h2>📋 Activity Log</h2>
+            <div class="messages" id="messages"></div>
+        </aside>
+
+        <!-- Notifications -->
+        <div class="notification" id="notification"></div>
+
+        <!-- Start Screen -->
+        <div class="start-screen" id="start-screen">
+            <div class="start-content">
+                <h1>🦎 Bearded Dragon Simulator</h1>
+                <p>Raise your very own bearded dragon from a baby to a full-grown adult!</p>
+                <div class="name-input">
+                    <label for="name-input">Name your dragon:</label>
+                    <input type="text" id="name-input" placeholder="Enter name..." maxlength="20">
+                </div>
+                <div class="color-select">
+                    <label>Choose color morph:</label>
+                    <div class="color-options">
+                        <button class="color-btn selected" data-color="normal">🟤 Normal</button>
+                        <button class="color-btn" data-color="citrus">🟡 Citrus</button>
+                        <button class="color-btn" data-color="red">🔴 Red</button>
+                        <button class="color-btn" data-color="white">⚪ Zero/Witblits</button>
+                        <button class="color-btn" data-color="blue">🔵 Dark Blue</button>
+                    </div>
+                </div>
+                <button class="start-btn" id="start-btn">Start Game</button>
+                <button class="load-btn" id="load-btn">Load Saved Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
